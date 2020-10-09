@@ -1,0 +1,13 @@
+/*****************************************************
+ * Magic Mirror 2                                    *
+ * Custom CSS for MMM-Videoplayer                    *
+ *                                                   *
+ * By Erik Pettersson                                *
+ * Based on the MMM-VideoPlayer CSS by Sungje KIM    *
+ * MIT Licensed.                                     *
+ *                                                   *
+ *****************************************************/
+.MMM-Videoplayer video{
+    width: 560px;
+    height: 315px;
+}
