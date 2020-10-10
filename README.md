@@ -5,7 +5,7 @@ This [MagicMirror](https://github.com/MichMich/MagicMirror) module is a simple v
 
 ### Screen shot
 
-YouTube video To insert here...
+Insert YouTube video here...
 
 The "button" is from [another module](https://github.com/Snille/MMM-Modulebar), only setup to show that the video pause and resume on show and hide of the module...
 
@@ -19,7 +19,7 @@ Example config:
     video: "/modules/MMM-Videoplayer/video/mov_bbb.mp4", // Can also be a link to a mp4 file on the internet.
     loop: true, // Repeat the video.
     autoplay: true, // If set to true, sound (muted by default) has to be muted, otherwise the video will not auto play.
-    notification: "VIDEOPLAYER1", // Unique notification string for this player (to be able to play and pause from another module). 
+    notification: "VIDEOPLAYER1", // Unique notification string for this player (to be able to play and pause from another modules).
   }
 },
 ````
@@ -57,6 +57,4 @@ If you want to change the size of the player. Add the following in your custom.c
 ````
 
 ### Notes
-
 Even if the player is hidden, you can start and stop the video by sending "notifications" to it. :)
-
