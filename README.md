@@ -6,7 +6,8 @@ The module is a simple video player for your MagicMirror.
 
 ### Screen shot
 
-I will insert YouTube video here later... :)
+[![The video](http://img.youtube.com/vi/7Xp5lOZNERc/0.jpg)](http://www.youtube.com/watch?v=7Xp5lOZNERc "MMM-Videoplayer")
+
 
 The "button" is from [another module](https://github.com/Snille/MMM-Modulebar), only setup to show that the video pause and resume on show and hide of the module...
 
