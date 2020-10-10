@@ -5,7 +5,7 @@ This [MagicMirror](https://github.com/MichMich/MagicMirror) module is a simple v
 
 ### Screen shot
 
-Insert YouTube video here...
+I will insert YouTube video here later... :)
 
 The "button" is from [another module](https://github.com/Snille/MMM-Modulebar), only setup to show that the video pause and resume on show and hide of the module...
 
