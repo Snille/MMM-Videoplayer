@@ -1,5 +1,5 @@
 # MMM-Videoplayer
-===
+
 
 This [MagicMirror](https://github.com/MichMich/MagicMirror) module is a simple video player for your MagicMirror
 
