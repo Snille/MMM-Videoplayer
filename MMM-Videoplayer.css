@@ -3,11 +3,11 @@
  * Custom CSS for MMM-Videoplayer                    *
  *                                                   *
  * By Erik Pettersson                                *
- * Based on the MMM-VideoPlayer CSS by Sungje KIM    *
+ * Based on the MMM-videoPlay CSS by Sungje KIM      *
  * MIT Licensed.                                     *
  *                                                   *
  *****************************************************/
-.MMM-Videoplayer video{
+.MMM-Videoplayer video {
     width: 560px;
     height: 315px;
 }
