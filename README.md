@@ -1,7 +1,8 @@
 # MMM-Videoplayer
 
+This an extension for the [MagicMirror²](https://magicmirror.builders/). 
 
-This [MagicMirror](https://github.com/MichMich/MagicMirror) module is a simple video player for your MagicMirror
+The module is a simple video player for your MagicMirror.
 
 ### Screen shot
 
