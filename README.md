@@ -16,7 +16,7 @@ Example config:
 ````javascript
 {
   module: 'MMM-Videoplayer',
-  position: 'middle_center'
+  position: 'middle_center',
   config: {
     video: "/modules/MMM-Videoplayer/video/mov_bbb.mp4", // Can also be a link to a mp4 file on the internet.
     loop: true, // Repeat the video.
@@ -31,7 +31,7 @@ Absolute minimum config (will only play the default video file):
 ````javascript
 {
   module: 'MMM-Videoplayer',
-  position: 'middle_center'
+  position: 'middle_center',
   config: {
   }
 },
