@@ -11,20 +11,36 @@ The module is a simple video player for your MagicMirror.
 
 The "button" is from [another module](https://github.com/Snille/MMM-Modulebar), only setup to show that the video pause and resume on show and hide of the module...
 
-Example config:
+Example config (single file):
 
 ````javascript
 {
   module: 'MMM-Videoplayer',
   position: 'middle_center',
   config: {
-    video: "/modules/MMM-Videoplayer/video/mov_bbb.mp4", // Can also be a link to a mp4 file on the internet.
+    video: "/modules/MMM-Videoplayer/video/mov_bbb.mp4", // Can also be a URL to a mp4 file on the internet.
     loop: true, // Repeat the video.
     autoplay: true, // If set to true, sound (muted by default) has to be muted, otherwise the video will not auto play.
     notification: "VIDEOPLAYER1", // Unique notification string for this player (to be able to play and pause from another modules).
   }
 },
 ````
+Example config (multi URLs to files):
+
+````javascript
+{
+  module: 'MMM-Videoplayer',
+  position: 'middle_center',
+  config: {
+    videolist: ["https://your.site.com/videos/video1.mp4", "https://your.site.com/videos/video2.mp4", "https://your.site.com/videos/video3.mp4"], // Can also be set to files in the path.
+    random: true, // Repeat the videos in random order forever.
+    autoplay: true, // If set to true, sound (muted by default) has to be muted, otherwise the video will not auto play.
+    notification: "VIDEOPLAYER1", // Unique notification string for this player (to be able to play and pause from another modules).
+  }
+},
+````
+
+
 
 Absolute minimum config (will only play the default video file):
 
@@ -39,8 +55,10 @@ Absolute minimum config (will only play the default video file):
 
 | Option | Default | Description |
 |---|---|---| 
-|`video`|`/modules/MMM-Videoplayer/video/mov_bbb.mp4`|The video file to play.|
-|`loop`|`true`|Loop the video or not.<br>Possible values: **true** or **false**|
+|`video`|`/modules/MMM-Videoplayer/video/mov_bbb.mp4`|The video file to play (may be a URL to a video file as well).|
+|`videolist`|none|`Example: ['/modules/MMM-Videoplayer/video/video01.mp4', '/modules/MMM-Videoplayer/video/video02.mp4',... ]` List of video files to play (may be URLs to different video files as well).|
+|`loop`|`true`|Loop the video or not. If the videolist is set, it will loop through all videos.<br>Possible values: **true** or **false**|
+|`random`|`false`|If set to true, any video in the list vill be played and then another (may be the same clip again). This will continue forever (even when only one video is specified).<br>Possible values: **true** or **false**|
 |`showcontorls`|false|Show the controls or not.<br>Possible values: **true** or **false**|
 |`preload`|auto|Preload the video or not see the html-[video](https://www.w3schools.com/tags/tag_video.asp)-tag for more information<br>Possible values: **auto**, **metadata** or **none**|
 |`autoplay`|`true`|If set to true, sound (muted by default) has to be muted as well, otherwise the video will not auto play.<br>Possible values: **true** or **false**|
