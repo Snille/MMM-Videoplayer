@@ -4,6 +4,7 @@
  * Module: MMM-Videoplayer
  *
  * By Erik Pettersson
+ * Assisted by Timo Pettersson
  * Based on the MMM-videoPlay Module by Sungje KIM
  *
  * MIT Licensed.
@@ -13,8 +14,8 @@ Module.register("MMM-Videoplayer", {
 		defaultvideo: "/modules/MMM-Videoplayer/video/mov_bbb.mp4",
 		//video: "/modules/MMM-Videoplayer/video/mov_bbb.mp4", // This can also be a link to a mp4 file on the internet.
 		//videolist: ["/modules/MMM-Videoplayer/video/test01.mp4", "/modules/MMM-Videoplayer/video/test02.mp4", "/modules/MMM-Videoplayer/video/test03.mp4"], // Can also be links to a mp4 files on the internet.
-		random: false, // Play the videos randomly (enables looping). 
-		loop: true, // Repeat the videos (if in order or only one video).
+		random: false, // Play the videos randomly. 
+		loop: true, // Repeat the video list.
 		showcontorls: false, // Set to true if you want the video controls to show.
 		preload: "auto", // Can be set to: "auto", "metadata", "none".
 		autoplay: true, // If set to true, sound (muted below) has to be true, otherwise the video will not auto play.
@@ -29,7 +30,7 @@ Module.register("MMM-Videoplayer", {
 		return ["MMM-Videoplayer.css"];
 	},
 
-	// Pause and play control via notifications using "TOGGLE".
+	// Pause, play, replay and next video control via notifications using "TOGGLE", "REPLAY" or "NEXT".
 	notificationReceived: function (notification, payload, sender) {
 		if (notification === this.config.notification) {
 			if (payload === 'TOGGLE') {
@@ -38,6 +39,10 @@ Module.register("MMM-Videoplayer", {
 				} else {
 					this.video.pause();
 				}
+			} else if (payload === 'NEXT') {
+				this.nextVideo();
+			} else if (payload === 'REPLAY') {
+				this.replayVideo();
 			}
 		}
 	},
@@ -56,25 +61,36 @@ Module.register("MMM-Videoplayer", {
 		}
 	},
 
-	// Plays the next selected video.
+	// Restart current playing video from start.
+	replayVideo: function () {
+		var lastIndex = this.playedVideoArray.length - 1;
+		if (lastIndex > -1) {
+			this.video.setAttribute("src", this.playedVideoArray[lastIndex]);
+			this.video.load();
+			this.video.play();
+		}
+	},
+
+	// Plays the next video in queue.
 	nextVideo: function () {
+		// Resets the video queue if set to loop.
+		if (this.videoArray.length == 0) {
+			if (!this.config.loop) {
+				return;
+			}
+			this.videoArray = this.playedVideoArray;
+			this.playedVideoArray = [];
+		}
 
 		// Random video.
 		if (this.config.random) {
 			this.currentVideoIndex = Math.floor(Math.random() * this.videoArray.length);
-		} else {
-			// Not random.
-			this.currentVideoIndex++;
-		}
-
-		// Loop the list if enabled.
-		if (this.currentVideoIndex >= this.videoArray.length) {
-			this.currentVideoIndex = 0;
-			if (!this.config.loop) return;
 		}
 
 		// Sets the video to play.
 		this.video.setAttribute("src", this.videoArray[this.currentVideoIndex]);
+		// Add the played video to the played queue.
+		this.playedVideoArray.push(this.videoArray.splice(this.currentVideoIndex, 1))
 		this.video.load();
 		this.video.play();
 	},
@@ -83,6 +99,7 @@ Module.register("MMM-Videoplayer", {
 	getDom: function () {
 		// Setup the video array.
 		this.videoArray = [];
+		this.playedVideoArray = [];
 
 		// Checks if anything is defined in the config (video or videolist).
 		if (!this.config.video && !this.config.videolist) {
@@ -102,7 +119,7 @@ Module.register("MMM-Videoplayer", {
 		var wrapper = document.createElement("div");
 		this.video = document.createElement("video");
 
-		this.currentVideoIndex = -1;
+		this.currentVideoIndex = 0;
 
 		this.video.addEventListener('ended', this.nextVideo.bind(this), false);
 		this.video.muted = this.config.muted;
