@@ -16,6 +16,8 @@ Module.register("MMM-Videoplayer", {
 		//videolist: ["/modules/MMM-Videoplayer/video/test01.mp4", "/modules/MMM-Videoplayer/video/test02.mp4", "/modules/MMM-Videoplayer/video/test03.mp4"], // Can also be links to a mp4 files on the internet.
 		random: false, // Play the videos randomly. 
 		loop: true, // Repeat the video list.
+		hideonstart: false, // If set to true, the player will hide it self when a clip is loaded (and just started playing). Then when the player is shown again it will continue play the clip and hide itself again when the next clip is loaded (and just starts playing) and so on.
+		fadeSpeed: 1000, // The speed to hide the module (milliseconds).
 		showcontorls: false, // Set to true if you want the video controls to show.
 		preload: "auto", // Can be set to: "auto", "metadata", "none".
 		autoplay: true, // If set to true, sound (muted below) has to be true, otherwise the video will not auto play.
@@ -73,6 +75,12 @@ Module.register("MMM-Videoplayer", {
 
 	// Plays the next video in queue.
 	nextVideo: function () {
+
+		// If set to true, the player will hide it self when a clip is loaded (and just started playing).
+		if (this.config.hideonstart) {
+			this.hide(this.config.fadeSpeed)
+		}
+
 		// Resets the video queue if set to loop.
 		if (this.videoArray.length == 0) {
 			if (!this.config.loop) {
@@ -116,20 +124,33 @@ Module.register("MMM-Videoplayer", {
 			}
 		}
 
+		// Build the player.
 		var wrapper = document.createElement("div");
+
+		// Adds the video
 		this.video = document.createElement("video");
 
+		// Make sure we set the video list to 0
 		this.currentVideoIndex = 0;
 
+		// Adds the ended event so we know.
 		this.video.addEventListener('ended', this.nextVideo.bind(this), false);
+
+		// Adds the rest of the payer video tag settings.
 		this.video.muted = this.config.muted;
 		this.video.autoplay = this.config.autoplay;
 		this.video.loop = false;
 		this.video.controls = this.config.showcontorls;
 		this.video.preload = this.config.preload;
 		this.video.id = this.identifier + "_video";
+
+		// Loads the first video.
 		this.nextVideo();
+
+		// Wrap it up.
 		wrapper.appendChild(this.video);
+
+		//Sends it back to the dom.
 		return wrapper;
 	},
 }
