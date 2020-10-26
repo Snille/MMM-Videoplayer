@@ -71,6 +71,7 @@ Absolute minimum config (will only play the default video file):
 |`videolist`|none|`Example: ['/modules/MMM-Videoplayer/video/video01.mp4', '/modules/MMM-Videoplayer/video/video02.mp4',... ]` List of video files to play (may be URLs to different video files as well).|
 |`loop`|`true`|Loop the video or not. If the videolist is set, it will loop through all videos.<br>Possible values: **true** or **false**|
 |`random`|`false`|If set to true, all videos in the list vill be played until all videos has been played in radom order.<br>Possible values: **true** or **false**|
+|`hideonstart`|false|If set to true, the player will hide it self when a clip is loaded (and just started playing (the clip will be paused when the module is hidden)). Then when the player is shown again it will continue play the clip and hide itself again when the next clip is loaded (and just starts playing) and so on.<br>Possible values: **true** or **false**|
 |`showcontorls`|false|Show the controls or not.<br>Possible values: **true** or **false**|
 |`preload`|auto|Preload the video or not see the html-[video](https://www.w3schools.com/tags/tag_video.asp)-tag for more information<br>Possible values: **auto**, **metadata** or **none**|
 |`autoplay`|`true`|If set to true, sound (muted by default) has to be muted as well, otherwise the video will not auto play.<br>Possible values: **true** or **false**|
