@@ -11,7 +11,21 @@ The module is a simple video player for your MagicMirror.
 
 The "button" is from [another module](https://github.com/Snille/MMM-Modulebar), only setup to show that the video pause and resume on show and hide of the module...
 
-Example config (single file):
+### Installation
+
+In your terminal, go to your MagicMirror's Module folder:
+````
+cd ~/MagicMirror/modules
+````
+
+Clone this repository:
+````
+git clone https://github.com/Snille/MMM-Videoplayer.git
+````
+
+### Configuration
+
+Example config (single local video file):
 
 ````javascript
 {
@@ -25,7 +39,7 @@ Example config (single file):
   }
 },
 ````
-Example config (multi URLs to files):
+Example config (multi URLs to files on the Internet):
 
 ````javascript
 {
@@ -65,12 +79,50 @@ Absolute minimum config (will only play the default video file):
 |`resumeonshow`|`true`|If true the module will resume the video when shown.<br>Possible values: **true** or **false**|
 |`notification`|`VIDEOPLAYER1`|Unique notification string for this player. "payload" can be "TOGGLE" to start or stop the player, "REPLAY" to restart current video or "NEXT" to play the next video in the list when sending notifications.|
 
+### CSS Tricks
+
 If you want to change the size of the player. Add the following in your custom.css and set the size there.
 
 ````css
 .MMM-Videoplayer video {
     width: 560px;
     height: 315px;
+}
+````
+
+If you want to rotate the player 90 degrees and set the size:
+
+````CSS
+.MMM-Videoplayer video {
+    width: 560px;
+    height: 315px;
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    -o-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+}
+````
+
+Normally you just need to add the line:
+
+````CSS
+    transform:rotate(90deg);
+````
+
+But for comparability reasons, you can add all of them. 🙂
+
+And, as you will probably notice with the above CSS code. If you set the size as your screen size, the video player will not really “fill” the whole screen (if you put in in the "fullscreen_below" region) when you turn it 90 degrees. So, then you need to do this:
+
+````CSS
+.MMM-Videoplayer video {
+    position: absolute;
+    transform:rotate(90deg);
+    transform-origin: bottom left;
+    width: 100vh;
+    height: 100vw;
+    margin-top: -100vw;
+    object-fit: cover;
 }
 ````
 
