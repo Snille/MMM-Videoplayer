@@ -18,7 +18,7 @@ Module.register("MMM-Videoplayer", {
 		loop: true, // Repeat the video list.
 		hideonstart: false, // If set to true, the player will hide it self when a clip is loaded (and just started playing). Then when the player is shown again it will continue play the clip and hide itself again when the next clip is loaded (and just starts playing) and so on.
 		fadeSpeed: 1000, // The speed to hide the module (milliseconds).
-		showcontorls: false, // Set to true if you want the video controls to show.
+		showcontrols: false, // Set to true if you want the video controls to show.
 		preload: "auto", // Can be set to: "auto", "metadata", "none".
 		autoplay: true, // If set to true, sound (muted below) has to be true, otherwise the video will not auto play.
 		muted: true, // Mute the sound. If auto play is true, this needs to be true as well, otherwise the video will not auto play.
@@ -140,7 +140,7 @@ Module.register("MMM-Videoplayer", {
 		this.video.muted = this.config.muted;
 		this.video.autoplay = this.config.autoplay;
 		this.video.loop = false;
-		this.video.controls = this.config.showcontorls;
+		this.video.controls = this.config.showcontrols;
 		this.video.preload = this.config.preload;
 		this.video.id = this.identifier + "_video";
 
