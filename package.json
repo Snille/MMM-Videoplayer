@@ -1,0 +1,19 @@
+{
+  "name": "MMM-Videoplayer",
+  "version": "1.0.0",
+  "description": "A simple video player module for MagicMirror².",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Snille/MMM-Videoplayer.git"
+  },
+  "keywords": [
+    "magicmirror",
+    "magicmirror2",
+    "MagicMirror²",
+    "video",
+    "player",
+    "module"
+  ],
+  "author": "Erik Pettersson",
+  "license": "MIT"
+}
