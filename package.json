@@ -6,14 +6,22 @@
     "type": "git",
     "url": "https://github.com/Snille/MMM-Videoplayer.git"
   },
+  "scripts": {
+    "lint": "eslint ."
+  },
   "keywords": [
     "magicmirror",
-    "magicmirror2",
+    "magicmirror²",
     "MagicMirror²",
     "video",
     "player",
     "module"
   ],
   "author": "Erik Pettersson",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.4.0"
+  }
 }

@@ -1,33 +1,44 @@
 # MMM-Videoplayer
 
-This an extension for the [MagicMirror²](https://magicmirror.builders/). 
+This is a module for [MagicMirror²](https://magicmirror.builders/).
 
-The module is a simple video player for your MagicMirror.
+The module is a simple video player for your MagicMirror² setup.
 
-### Screen shot
+### Screenshot
 
 [![The video](screenshot.png)](http://www.youtube.com/watch?v=7Xp5lOZNERc "MMM-Videoplayer")
 
-
-The "button" is from [another module](https://github.com/Snille/MMM-Modulebar), only setup to show that the video pause and resume on show and hide of the module...
+The "button" is from [MMM-Modulebar](https://github.com/Snille/MMM-Modulebar), only set up to show that the video pauses and resumes when the module is shown or hidden.
 
 ### Installation
 
-In your terminal, go to your MagicMirror's Module folder:
-````
+In your terminal, go to your MagicMirror² `modules` folder:
+
+```bash
 cd ~/MagicMirror/modules
-````
+```
 
 Clone this repository:
-````
+
+```bash
 git clone https://github.com/Snille/MMM-Videoplayer.git
-````
+cd MMM-Videoplayer
+```
+
+### Update
+
+In your terminal, go to the module folder and pull the latest changes:
+
+```bash
+cd ~/MagicMirror/modules/MMM-Videoplayer
+git pull
+```
 
 ### Configuration
 
 Example config (single local video file):
 
-````javascript
+```javascript
 {
   module: 'MMM-Videoplayer',
   position: 'middle_center',
@@ -38,10 +49,11 @@ Example config (single local video file):
     notification: "VIDEOPLAYER1", // Unique notification string for this player (to be able to play, pause, restart and next from another modules).
   }
 },
-````
+```
+
 Example config (multi URLs to files on the Internet):
 
-````javascript
+```javascript
 {
   module: 'MMM-Videoplayer',
   position: 'middle_center',
@@ -52,18 +64,18 @@ Example config (multi URLs to files on the Internet):
     notification: "VIDEOPLAYER1", // Unique notification string for this player (to be able to play and pause from another modules).
   }
 },
-````
+```
 
 Absolute minimum config (will only play the default video file):
 
-````javascript
+```javascript
 {
   module: 'MMM-Videoplayer',
   position: 'middle_center',
   config: {
   }
 },
-````
+```
 
 | Option | Default | Description |
 |---|---|---| 
@@ -82,18 +94,18 @@ Absolute minimum config (will only play the default video file):
 
 ### CSS Tricks
 
-If you want to change the size of the player. Add the following in your custom.css and set the size there.
+If you want to change the size of the player, add the following to your `custom.css` and set the size there.
 
-````css
+```css
 .MMM-Videoplayer video {
     width: 560px;
     height: 315px;
 }
-````
+```
 
 If you want to rotate the player 90 degrees and set the size:
 
-````CSS
+```css
 .MMM-Videoplayer video {
     width: 560px;
     height: 315px;
@@ -103,19 +115,19 @@ If you want to rotate the player 90 degrees and set the size:
     -ms-transform:rotate(90deg);
     transform:rotate(90deg);
 }
-````
+```
 
 Normally you just need to add the line:
 
-````CSS
+```css
     transform:rotate(90deg);
-````
+```
 
-But for comparability reasons, you can add all of them. 🙂
+But for compatibility reasons, you can add all of them.
 
-And, as you will probably notice with the above CSS code. If you set the size as your screen size, the video player will not really “fill” the whole screen (if you put in in the "fullscreen_below" region) when you turn it 90 degrees. So, then you need to do this:
+If you set the size to your screen size, the video player will not really fill the whole screen when you rotate it 90 degrees, for example in the `fullscreen_below` region. In that case, you can use:
 
-````CSS
+```css
 .MMM-Videoplayer video {
     position: absolute;
     transform:rotate(90deg);
@@ -125,7 +137,8 @@ And, as you will probably notice with the above CSS code. If you set the size as
     margin-top: -100vw;
     object-fit: cover;
 }
-````
+```
 
 ### Notes
-Even if the player is hidden, you can start and stop the video by sending "notifications" to it. :)
+
+Even if the player is hidden, you can still start and stop the video by sending notifications to it.

@@ -1,6 +1,4 @@
-/* global Module */
-
-/* Magic Mirror 2
+/* MagicMirror²
  * Module: MMM-Videoplayer
  *
  * By Erik Pettersson
@@ -14,7 +12,7 @@ Module.register("MMM-Videoplayer", {
 		defaultvideo: "/modules/MMM-Videoplayer/video/mov_bbb.mp4",
 		//video: "/modules/MMM-Videoplayer/video/mov_bbb.mp4", // This can also be a link to a mp4 file on the internet.
 		//videolist: ["/modules/MMM-Videoplayer/video/test01.mp4", "/modules/MMM-Videoplayer/video/test02.mp4", "/modules/MMM-Videoplayer/video/test03.mp4"], // Can also be links to a mp4 files on the internet.
-		random: false, // Play the videos randomly. 
+		random: false, // Play the videos randomly.
 		loop: true, // Repeat the video list.
 		hideonstart: false, // If set to true, the player will hide it self when a clip is loaded (and just started playing). Then when the player is shown again it will continue play the clip and hide itself again when the next clip is loaded (and just starts playing) and so on.
 		fadeSpeed: 1000, // The speed to hide the module (milliseconds).
@@ -23,8 +21,8 @@ Module.register("MMM-Videoplayer", {
 		autoplay: true, // If set to true, sound (muted below) has to be true, otherwise the video will not auto play.
 		muted: true, // Mute the sound. If auto play is true, this needs to be true as well, otherwise the video will not auto play.
 		pauseonhide: true, // If true the module will pause the video when hidden.
-		resumeonshow: true,  // If true the module will resume the video when shown.
-		notification: "VIDEOPLAYER1", // Unique notification string for this player.
+		resumeonshow: true, // If true the module will resume the video when shown.
+		notification: "VIDEOPLAYER1" // Unique notification string for this player.
 	},
 
 	// Loading the CSS
@@ -35,15 +33,15 @@ Module.register("MMM-Videoplayer", {
 	// Pause, play, replay and next video control via notifications using "TOGGLE", "REPLAY" or "NEXT".
 	notificationReceived: function (notification, payload, sender) {
 		if (notification === this.config.notification) {
-			if (payload === 'TOGGLE') {
+			if (payload === "TOGGLE") {
 				if (this.video.paused) {
 					this.video.play();
 				} else {
 					this.video.pause();
 				}
-			} else if (payload === 'NEXT') {
+			} else if (payload === "NEXT") {
 				this.nextVideo();
-			} else if (payload === 'REPLAY') {
+			} else if (payload === "REPLAY") {
 				this.replayVideo();
 			}
 		}
@@ -75,14 +73,13 @@ Module.register("MMM-Videoplayer", {
 
 	// Plays the next video in queue.
 	nextVideo: function () {
-
 		// If set to true, the player will hide it self when a clip is loaded (and just started playing).
 		if (this.config.hideonstart) {
-			this.hide(this.config.fadeSpeed)
+			this.hide(this.config.fadeSpeed);
 		}
 
 		// Resets the video queue if set to loop.
-		if (this.videoArray.length == 0) {
+		if (this.videoArray.length === 0) {
 			if (!this.config.loop) {
 				return;
 			}
@@ -98,7 +95,7 @@ Module.register("MMM-Videoplayer", {
 		// Sets the video to play.
 		this.video.setAttribute("src", this.videoArray[this.currentVideoIndex]);
 		// Add the played video to the played queue.
-		this.playedVideoArray.push(this.videoArray.splice(this.currentVideoIndex, 1))
+		this.playedVideoArray.push(this.videoArray.splice(this.currentVideoIndex, 1)[0]);
 		this.video.load();
 		this.video.play();
 	},
@@ -116,11 +113,11 @@ Module.register("MMM-Videoplayer", {
 		} else {
 			// If videolist is defined, adds them to the array.
 			if (this.config.videolist) {
-				this.videoArray = this.config.videolist
+				this.videoArray = this.config.videolist.slice();
 			}
-			// If video is defined add that first in the array. 
+			// If video is defined add that first in the array.
 			if (this.config.video) {
-				this.videoArray.unshift(this.config.video)
+				this.videoArray.unshift(this.config.video);
 			}
 		}
 
@@ -134,7 +131,7 @@ Module.register("MMM-Videoplayer", {
 		this.currentVideoIndex = 0;
 
 		// Adds the ended event so we know.
-		this.video.addEventListener('ended', this.nextVideo.bind(this), false);
+		this.video.addEventListener("ended", this.nextVideo.bind(this), false);
 
 		// Adds the rest of the payer video tag settings.
 		this.video.muted = this.config.muted;
@@ -152,6 +149,5 @@ Module.register("MMM-Videoplayer", {
 
 		//Sends it back to the dom.
 		return wrapper;
-	},
-}
-);
+	}
+});
