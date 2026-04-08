@@ -7,7 +7,7 @@
     "url": "https://github.com/Snille/MMM-Videoplayer.git"
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint"
   },
   "keywords": [
     "magicmirror",

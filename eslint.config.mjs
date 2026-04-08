@@ -1,7 +1,8 @@
+import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
 import globals from "globals";
 
-export default [
+export default defineConfig([
 	js.configs.recommended,
 	{
 		files: ["**/*.js"],
@@ -17,4 +18,4 @@ export default [
 			"no-unused-vars": ["error", { "args": "none" }]
 		}
 	}
-];
+]);
