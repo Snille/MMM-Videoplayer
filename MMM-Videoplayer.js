@@ -31,7 +31,7 @@ Module.register("MMM-Videoplayer", {
 	},
 
 	// Pause, play, replay and next video control via notifications using "TOGGLE", "REPLAY" or "NEXT".
-	notificationReceived: function (notification, payload, sender) {
+	notificationReceived: function (notification, payload) {
 		if (notification === this.config.notification) {
 			if (payload === "TOGGLE") {
 				if (this.video.paused) {
